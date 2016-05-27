@@ -27,6 +27,8 @@
 // 默认标题字体
 #define CMTitleFont [UIFont systemFontOfSize:15]
 
+#define CMCoverCornerRadius 13
+
 // 默认标题间距
 #define margin  20
 

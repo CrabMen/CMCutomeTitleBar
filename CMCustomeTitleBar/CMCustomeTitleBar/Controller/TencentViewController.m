@@ -1,80 +1,73 @@
 //
-//  JRViewController.m
+//  TencentViewController.m
 //  CMCustomeTitleBar
 //
-//  Created by CrabMan on 16/5/24.
+//  Created by CrabMan on 16/5/27.
 //  Copyright © 2016年 CrabMan. All rights reserved.
 //
 
-#import "JRViewController.h"
+#import "TencentViewController.h"
 #import "CMChildTableViewController.h"
-@interface JRViewController ()
+@interface TencentViewController ()
 
 @end
 
-@implementation JRViewController
+@implementation TencentViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.title = @"今日头条";
     self.titleColorGradientStyle = CMTitleColorGradientStyleFill;
-    self.isShowUnderLine = YES;
+    self.isShowTitleCover = YES;
     [self setUpAllViewController];
-    
-
-   
-    
 }
 
 - (void)setUpAllViewController
 {
     
     // 段子
-    CMChildTableViewController *wordVc1 = [[CMChildTableViewController alloc] init];
-    wordVc1.title = @"小码哥";
+    CMChildTableViewController *wordVc1 = [[ CMChildTableViewController alloc] init];
+    wordVc1.title = @"安全工程概论";
     [self addChildViewController:wordVc1];
     
     // 段子
     CMChildTableViewController *wordVc2 = [[CMChildTableViewController alloc] init];
-    wordVc2.title = @"M了个J";
+    wordVc2.title = @"安全心理学";
     [self addChildViewController:wordVc2];
     
     // 段子
     CMChildTableViewController *wordVc3 = [[CMChildTableViewController alloc] init];
-    wordVc3.title = @"啊峥";
+    wordVc3.title = @"安全学原理";
     [self addChildViewController:wordVc3];
+    // 声音
+    CMChildTableViewController *voiceVc = [[CMChildTableViewController alloc] init];
+    voiceVc.title = @"火炸药概论";
+    [self addChildViewController:voiceVc];
     
     CMChildTableViewController *wordVc4 = [[CMChildTableViewController alloc] init];
-    wordVc4.title = @"吖了个峥";
+    wordVc4.title = @"安全人机工程";
     [self addChildViewController:wordVc4];
     
     // 全部
     CMChildTableViewController *allVc = [[CMChildTableViewController alloc] init];
-    allVc.title = @"全部";
+    allVc.title = @"电气安全";
     [self addChildViewController:allVc];
     
     // 视频
     CMChildTableViewController *videoVc = [[CMChildTableViewController alloc] init];
-    videoVc.title = @"视频";
+    videoVc.title = @"系统安全工程";
     [self addChildViewController:videoVc];
     
-    // 声音
-    CMChildTableViewController *voiceVc = [[CMChildTableViewController alloc] init];
-    voiceVc.title = @"声音";
-    [self addChildViewController:voiceVc];
+    
     
     // 图片
     CMChildTableViewController *pictureVc = [[CMChildTableViewController alloc] init];
-    pictureVc.title = @"图片";
+    pictureVc.title = @"压力容器安全技术";
     [self addChildViewController:pictureVc];
     
     // 段子
     CMChildTableViewController *wordVc = [[CMChildTableViewController alloc] init];
-    wordVc.title = @"段子";
+    wordVc.title = @"爆破工程与安全技术";
     [self addChildViewController:wordVc];
-    
-    
     
 }
 

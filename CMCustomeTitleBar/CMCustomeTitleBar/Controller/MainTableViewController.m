@@ -7,7 +7,13 @@
 //
 
 #import "MainTableViewController.h"
+
 #import "JRViewController.h"
+#import "WYViewController.h"
+#import "TencentViewController.h"
+#import "XMLYViewController.h"
+
+
 @interface MainTableViewController ()
 @property (nonatomic,strong) NSArray *styleArray;
 
@@ -60,6 +66,18 @@
     switch (indexPath.row) {
         case 0:
             [self.navigationController pushViewController:[JRViewController new] animated:YES];
+            break;
+            
+        case 1:
+            [self.navigationController pushViewController:[WYViewController new] animated:YES];
+            break;
+            
+        case 2:
+            [self.navigationController pushViewController:[TencentViewController new] animated:YES];
+            break;
+        
+        case 3:
+            [self.navigationController pushViewController:[XMLYViewController new] animated:YES];
             break;
             
         default:
