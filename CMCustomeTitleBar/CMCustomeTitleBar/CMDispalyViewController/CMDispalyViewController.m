@@ -81,7 +81,7 @@
  */
 -(UIColor *)selectedColor {
     if (_titleColorGradientStyle == CMTitleColorGradientStyleRGB ) {
-        _selectedColor = [UIColor colorWithRed:_endR green:_endG blue:_endB alpha:1];
+        _selectedColor = [UIColor colorWithRed:_endR?_endR:1 green:_endG blue:_endB alpha:1];
     } else {
         
         _selectedColor = [UIColor redColor];
@@ -94,17 +94,21 @@
     
     NSArray *titles = [self.childViewControllers valueForKeyPath:@"title"];
     CGFloat totalLabelWidth = 0;
-    for (NSString *title in titles) {
-        
-        CGFloat labelWidth = [self setUpLabelWidthAccordingToTitle:title].size.width;
-        
-        totalLabelWidth += labelWidth;
+    
+    if (totalLabelWidth == 0) {
+        for (NSString *title in titles) {
+            
+            CGFloat labelWidth = [self setUpLabelWidthAccordingToTitle:title].size.width;
+            
+            totalLabelWidth += labelWidth;
+        }
     }
+  
     
     if (totalLabelWidth  >= CMScreenW) {
         _titleMargin = margin;
         
-        self.titleScrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, self.titleMargin);
+        self.titleScrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, _titleMargin);
     } else {
         
         CGFloat titleMargin = (CMScreenW - self.labesTotalWidth)/(self.childViewControllers.count + 1);
@@ -222,7 +226,7 @@
         ];
         _coverView = coverView;
     }
-    return _coverView;
+    return _isShowTitleCover?_coverView:nil;
     
 }
 - (void)setTitleScrollViewColor:(UIColor *)titleScrollViewColor {

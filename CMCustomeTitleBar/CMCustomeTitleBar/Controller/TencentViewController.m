@@ -16,8 +16,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.title = @"腾讯视频";
+    
     self.titleColorGradientStyle = CMTitleColorGradientStyleFill;
     self.isShowTitleCover = YES;
+    self.isShowTitleGradient = YES;
     [self setUpAllViewController];
 }
 

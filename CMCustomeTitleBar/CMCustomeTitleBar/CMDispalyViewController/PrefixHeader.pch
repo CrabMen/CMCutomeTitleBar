@@ -30,7 +30,7 @@
 #define CMCoverCornerRadius 13
 
 // 默认标题间距
-#define margin  20
+#define margin  30
 
 #define ID  @"cell"
 

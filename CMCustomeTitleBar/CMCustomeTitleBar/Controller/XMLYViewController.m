@@ -17,8 +17,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.title = @"喜马拉雅";
     [self setUpAllViewController];
     self.isShowUnderLine = YES;
+    self.isShowTitleGradient = YES;
     self.titleColorGradientStyle = CMTitleColorGradientStyleFill;
 
 }

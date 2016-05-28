@@ -17,9 +17,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
+    self.title = @"网易新闻";
     self.isShowTitleScale = YES;
+    
     self.titleColorGradientStyle = CMTitleColorGradientStyleFill;
-
+self.isShowTitleGradient = YES;
     [self setUpAllViewController];
     
     

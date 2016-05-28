@@ -19,7 +19,7 @@
     
     self.title = @"今日头条";
     self.titleColorGradientStyle = CMTitleColorGradientStyleFill;
-    self.isShowUnderLine = YES;
+    self.isShowTitleGradient = YES;
     [self setUpAllViewController];
     
 
