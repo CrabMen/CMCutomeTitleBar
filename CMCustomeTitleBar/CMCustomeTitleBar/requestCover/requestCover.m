@@ -25,9 +25,9 @@
         NSMutableArray *images = [NSMutableArray array];
         for (int i = 1; i <= 10; i++) {
             
-            NSString *imageName = [NSString stringWithFormat:@"%d.png",i];
-            UIImage *image = [UIImage imageNamed:imageName];
-            [images addObject:image];
+        NSString *imageName = [NSString stringWithFormat:@"%d.jpg",i];
+//            UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:imageName ofType:@"png"]];
+            [images addObject:[UIImage imageNamed:imageName]];
         }
         
         self.animationView.animationRepeatCount = MAXFLOAT;

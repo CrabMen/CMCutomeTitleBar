@@ -27,8 +27,15 @@
 /** 所以标题总宽度 */
 @property (nonatomic, assign) CGFloat labesTotalWidth;
 
+
+/**标题栏下方的分割线*/
+@property (nonatomic,strong) UIView *seperateLine;
+
+
 /** 下标视图 */
 @property (nonatomic, weak) UIView *underLine;
+
+
 
 /** 标题遮盖视图 */
 @property (nonatomic, weak) UIView *coverView;
@@ -52,16 +59,61 @@
 @property (nonatomic, assign) NSInteger selIndex;
 
 
-
 @end
 
 @implementation CMDispalyViewController
+
+
+
 -(instancetype)init {
     if (self = [super init]) {
        self.automaticallyAdjustsScrollViewInsets = NO;
+       self.cm_fullScreenGesture = YES;
+
     }
     return self;
 }
+
+
+
+
+
+- (UIColor *)cm_seperaterLineColor {
+    
+    _cm_seperaterLineColor = _cm_seperaterLineColor ? _cm_seperaterLineColor : [UIColor blueColor];
+    
+    return _cm_seperaterLineColor;
+    
+}
+
+- (CGFloat)cm_seperateLineH {
+    
+    
+    _cm_seperateLineH = _cm_seperateLineH ? _cm_seperateLineH : CM_ONE_PX;
+    
+    return _cm_seperateLineH;
+}
+
+
+
+
+
+
+- (UIView *)seperateLine {
+    
+    if (!_seperateLine) {
+       _seperateLine = [[UIView alloc]initWithFrame:CGRectMake(0, CMTitleScrollViewH - CM_ONE_PX, self.view.width, CMSeperateLineH)];
+        _seperateLine.backgroundColor = self.cm_seperaterLineColor;
+
+        
+    }
+    return _seperateLine;
+    
+}
+
+
+
+
 
 /**
  设置标题文字正常颜色
@@ -69,10 +121,11 @@
 -(UIColor *)normalColor {
 
     if (_titleColorGradientStyle == CMTitleColorGradientStyleRGB ) {
-        _normalColor = [UIColor colorWithRed:_startR green:_startG blue:_startG alpha:1];
+        _normalColor =
+        _normalColor ? _normalColor:[UIColor colorWithRed:_startR green:_startG blue:_startG alpha:1];
     } else {
-    
-        _normalColor = [UIColor blackColor];
+        
+        _normalColor = _normalColor ? _normalColor: [UIColor blackColor];
     }
     return _normalColor;
 }
@@ -81,7 +134,9 @@
  */
 -(UIColor *)selectedColor {
     if (_titleColorGradientStyle == CMTitleColorGradientStyleRGB ) {
+      
         _selectedColor = [UIColor colorWithRed:_endR?_endR:1 green:_endG blue:_endB alpha:1];
+  
     } else {
         
         _selectedColor = [UIColor redColor];
@@ -149,7 +204,11 @@
         UIView *contentView = [[UIView alloc]init];
         _contentView = contentView;
         
+        //将分割线添加到内容视图上，并放置到顶层
+        [_contentView addSubview:self.seperateLine];
+        [_contentView bringSubviewToFront:self.seperateLine];
         [self.view addSubview:_contentView];
+        
         
     }
     return _contentView;
@@ -168,7 +227,6 @@
         titleScrollView.bounces = NO;
         
         _titleScrollView = titleScrollView;
-        
         [self.contentView addSubview:_titleScrollView];
         
     }
@@ -218,7 +276,7 @@
         
         UIView *coverView = [UIView new];
         
-        coverView.backgroundColor = _coverColor ? _coverColor : [UIColor lightGrayColor];
+        coverView.backgroundColor = _coverColor ? _coverColor : [UIColor colorWithWhite:0 alpha:0.2];
         
         coverView.layer.cornerRadius = _coverCornerRadius ? _coverCornerRadius : CMCoverCornerRadius;
         
@@ -273,6 +331,8 @@
     CGFloat contentScrollViewY = _isFullScreen?0:CMTitleScrollViewH;
     self.contentScrollView.frame = CGRectMake(0, contentScrollViewY, CMScreenW, contentScrollViewH);
     
+     self.contentScrollView.scrollEnabled = self.cm_fullScreenGesture;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -286,9 +346,12 @@
         self.contentScrollView.backgroundColor = self.view.backgroundColor ;
         if (self.childViewControllers.count == 0) return;
         
-        
         [self setUpAllTitles];
         
+        
+    } else {
+//解决多次网络请求，通知对应的VC网络请求
+        [[NSNotificationCenter defaultCenter] postNotificationName:CMDisplayViewClickOrScrollDidFinshNote  object:self.childViewControllers[self.selIndex]];
         
     }
 }
@@ -354,7 +417,6 @@
     //设置内容滚动视图的contentSize
     self.contentScrollView.contentSize = CGSizeMake(self.childViewControllers.count * CMScreenW, 0);
     
-
 }
 
 
@@ -829,7 +891,6 @@
     if (rightIndex < self.titleLabels.count) {
         rightLabel = self.titleLabels[rightIndex];
     }
-    
     
     //字体放大
     [self setUpTitleScaleWithOffset:offSetX rightLabel:rightLabel leftLabel:leftLabel];

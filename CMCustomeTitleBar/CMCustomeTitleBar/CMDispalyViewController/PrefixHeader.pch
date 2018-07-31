@@ -9,6 +9,10 @@
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 
+
+//1px
+#define CM_ONE_PX  1.0/[UIScreen mainScreen].scale
+
 // 导航条高度
 #define CMNavBarH  64
 
@@ -20,6 +24,9 @@
 
 // 下划线默认高度
 #define CMUnderLineH  2
+
+#define CMSeperateLineH CM_ONE_PX
+
 
 #define CMScreenW [UIScreen mainScreen].bounds.size.width
 #define CMScreenH [UIScreen mainScreen].bounds.size.height
@@ -39,6 +46,5 @@
 
 // 重复点击通知
 #define  CMDisplayViewRepeatClickTitleNote  @"YZDisplayViewRepeatClickTitleNote"
-
 
 #endif /* PrefixHeader_pch */

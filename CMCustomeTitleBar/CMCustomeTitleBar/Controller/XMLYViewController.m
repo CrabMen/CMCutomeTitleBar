@@ -23,6 +23,8 @@
     self.isShowTitleGradient = YES;
     self.titleColorGradientStyle = CMTitleColorGradientStyleFill;
 
+    self.normalColor = [UIColor blueColor];
+    self.selectedColor = [UIColor redColor];
 }
 
 

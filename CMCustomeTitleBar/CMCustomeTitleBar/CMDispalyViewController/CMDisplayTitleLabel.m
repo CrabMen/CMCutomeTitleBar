@@ -9,7 +9,6 @@
 #import "CMDisplayTitleLabel.h"
 
 @implementation CMDisplayTitleLabel
-#warning drawRect是什么意思
 
 -(void)drawRect:(CGRect)rect {
     [super drawRect: rect];

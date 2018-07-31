@@ -23,6 +23,9 @@
     self.isShowTitleCover = YES;
     self.isShowTitleGradient = YES;
     [self setUpAllViewController];
+    
+    self.normalColor = [UIColor blueColor];
+    self.selectedColor = [UIColor redColor];
 }
 
 - (void)setUpAllViewController

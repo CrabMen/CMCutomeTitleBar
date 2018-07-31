@@ -32,8 +32,11 @@ typedef enum : NSUInteger{
  */
 @property (nonatomic,assign) NSInteger selectedIndex;
 
-- (void)setUpContentViewFrame:(void (^)(UIView *contentView))contentViewBlock ;
+/**是否可以全屏滑动*/
+@property (nonatomic,assign) BOOL cm_fullScreenGesture;
 
+
+- (void)setUpContentViewFrame:(void (^)(UIView *contentView))contentViewBlock ;
 
 
 
@@ -65,6 +68,15 @@ typedef enum : NSUInteger{
  标题字体
  */
 @property (nonatomic,strong) UIFont *titleFont;
+
+/**标题栏下方分割线的颜色*/
+@property (nonatomic,strong) UIColor *cm_seperaterLineColor;
+
+/**标题分割线的高度*/
+@property (nonatomic,assign) CGFloat cm_seperateLineH;
+
+
+
 
 /**
   设置标题的所有属性
